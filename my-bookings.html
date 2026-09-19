@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Bookings | Skill Link</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" />
+  <script src="https://cdn.tailwindcss?plugins=forms,container-queries"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#7f13ec",
+            "background-light": "#f7f6f8",
+            "background-dark": "#191022",
+          },
+          fontFamily: {
+            display: ["Manrope"],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200 min-h-screen">
+  <div class="relative flex min-h-screen flex-col">
+    <!-- Header -->
+    <header class="sticky top-0 z-20 border-b border-slate-200/70 bg-background-light/90 dark:border-slate-800/70 dark:bg-background-dark/80 backdrop-blur">
+      <div class="container mx-auto flex h-20 items-center justify-between px-4 lg:px-10">
+        <a href="index.html" class="flex items-center gap-3">
+          <svg class="h-10 w-10 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path>
+          </svg>
+          <div>
+            <p class="text-xs uppercase tracking-widest text-primary">Skill Link</p>
+            <p class="text-lg font-semibold text-slate-900 dark:text-white">My Bookings</p>
+          </div>
+        </a>
+        <div class="flex items-center gap-3">
+          <a href="index.html" class="rounded-full border border-slate-300/70 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800/70">
+            Home
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 container mx-auto px-4 py-8 lg:px-10">
+      <div class="mb-8">
+        <h1 class="text-4xl font-black text-slate-900 dark:text-white mb-2">My Bookings</h1>
+        <p class="text-slate-600 dark:text-slate-400">Track and manage all your service bookings</p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="mb-6 flex gap-2 border-b border-slate-200 dark:border-slate-700">
+        <button data-filter="all" class="filter-tab active px-4 py-2 text-sm font-semibold text-primary border-b-2 border-primary">
+          All Bookings
+        </button>
+        <button data-filter="upcoming" class="filter-tab px-4 py-2 text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-primary transition">
+          Upcoming
+        </button>
+        <button data-filter="completed" class="filter-tab px-4 py-2 text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-primary transition">
+          Completed
+        </button>
+        <button data-filter="cancelled" class="filter-tab px-4 py-2 text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-primary transition">
+          Cancelled
+        </button>
+      </div>
+
+      <!-- Loading State -->
+      <div id="loadingState" class="hidden text-center py-12">
+        <div class="inline-flex items-center gap-2 text-slate-600 dark:text-slate-400">
+          <span class="material-symbols-outlined animate-spin">refresh</span>
+          <span>Loading bookings...</span>
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="hidden text-center py-16">
+        <div class="max-w-md mx-auto">
+          <span class="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-600 mb-4">event_busy</span>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">No bookings found</h3>
+          <p class="text-slate-600 dark:text-slate-400 mb-6">You haven't made any bookings yet. Start booking services to see them here.</p>
+          <a href="index.html" class="inline-flex rounded-full bg-primary px-6 py-3 text-sm font-bold text-white shadow-lg shadow-primary/30 transition hover:bg-primary/90">
+            Browse Services
+          </a>
+        </div>
+      </div>
+
+      <!-- Bookings Grid -->
+      <div id="bookingsContainer" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Bookings will be rendered here -->
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-background-dark text-slate-200 mt-auto">
+      <div class="container mx-auto px-4 py-12 lg:px-10">
+        <div class="text-center text-xs text-slate-500">
+          © 2024 Skill Link. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/auth-guard.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/my-bookings.js"></script>
+  <script>
+    if (typeof checkAuth === "function") {
+      checkAuth();
+    }
+  </script>
+</body>
+</html>
+
